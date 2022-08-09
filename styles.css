@@ -18,6 +18,9 @@ fieldset{
 .container{
     text-align: center;
 }
+.header{
+    font-style: italic;
+}
 .main{
     margin-left: 20px;
 }
@@ -30,6 +33,12 @@ fieldset{
 }
 #input:hover{
     border: 4px solid papayawhip;
+}
+#search-text{
+    font-style: italic;
+    text-align: center;
+    color: white;
+    font-size: 30px;
 }
 #search{
     background: papayawhip;

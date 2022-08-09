@@ -43,11 +43,15 @@ let hour = now.getHours();
 let min = now.getMinutes();
 let allDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let days = allDay[now.getDay()];
-time.innerHTML = `${days} ${hour}:0${min}`;
+time.innerHTML = `${days} ${hour}:${min}`;
 
-let input = document.getElementById("input");
-let a = document.querySelector("h2");
-function search(event){
+
+
+function search(event) {
   event.preventDefault();
-   a.innerHTML = `Searching for ${input.value}`;
+  let searchInput = document.querySelector("#input");
+  let h2 = document.querySelector("#search-text");
+  h2.innerHTML = `Searching for ${searchInput.value}`;
 }
+let formEl = document.querySelector("#search-form");
+formEl.addEventListener("submit", search);
