@@ -36,6 +36,7 @@ function foreCast(){
      }
 }
 foreCast();
+
 let time = document.getElementById("day-time");
 let now = new Date();
 let hour = now.getHours();
@@ -43,3 +44,10 @@ let min = now.getMinutes();
 let allDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let days = allDay[now.getDay()];
 time.innerHTML = `${days} ${hour}:0${min}`;
+
+let input = document.getElementById("input");
+let a = document.querySelector("h2");
+function search(event){
+  event.preventDefault();
+   a.innerHTML = `Searching for ${input.value}`;
+}

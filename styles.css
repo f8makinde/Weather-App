@@ -23,7 +23,7 @@ fieldset{
 }
 #input{
     margin-top: 20px;
-    padding: 10px 40px;
+    padding: 10px 80px;
     border: none;
     border-radius: 2px;
     margin-bottom: 10px;
@@ -33,7 +33,7 @@ fieldset{
 }
 #search{
     background: papayawhip;
-    padding: 8px 20px;
+    padding: 8px 30px;
     border: none;
     border-radius: 2px;
     font-size: 16px;
