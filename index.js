@@ -1,3 +1,4 @@
+
 let weather = {
     paris: {
       temp: 19.7,
@@ -37,15 +38,41 @@ function foreCast(){
 }
 foreCast();
 
-let time = document.getElementById("day-time");
+
+function formatDate(now) {
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let dayIndex = now.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[dayIndex];
+
+  return `${day} ${hours}:${minutes}`;
+}
+let dateEl = document.querySelector("#now");
 let now = new Date();
-let hour = now.getHours();
-let min = now.getMinutes();
-let allDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let days = allDay[now.getDay()];
-time.innerHTML = `${days} ${hour}:${min}`;
+dateEl.innerHTML = formatDate(now);
 
-
+// let all = new Date();
+let x = document.getElementById("date");
+ let date = now.getDate();
+  let allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let month = allMonths[now.getMonth()];
+  x.innerHTML = `${month} ${date}`;
 
 function search(event) {
   event.preventDefault();
