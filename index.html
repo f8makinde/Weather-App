@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/70204d8c46.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Weather</title>
 </head>
 <body>
@@ -15,13 +15,16 @@
     <div class="container">
         <input type="text" placeholder="Enter a city..." id="input">
         <input type="submit" value="Search" id ="search">
+        <input type="button" value="Current" id="cur" onclick="currentLoc()">
         </div>
+            <h1 id="tmp"></h1>
     <div class="main">
         <h2 id ="search-text"></h2>
-        <h1><i class="fa-solid fa-sun"></i> Lagos, Nigeria</h1>
+        <h1 id="city"><i class="fa-solid fa-sun"></i> Lagos, Nigeria</h1>
+        <h3 id="des"></h3>
         <p id="date"></p>
         <p id="now"></p>
-        <h2>28℃</h2>
+        <h1 id="myTemp"></h1>
         <p>Wind: 6.17km/h</p>
         <p>Humidity: 70%</p>
     </div>
@@ -40,14 +43,9 @@
       <i class="fa-solid fa-cloud-sun-rain"></i>
      <i class="fa-solid fa-cloud-meatball"></i>
     </div>
-    <!-- <div class="section">
-       <p>78°|24°</p> 
-       <p>78°|24°</p> 
-       <p>78°|24°</p> 
-       <p>78°|24°</p> 
-       <p>78°|24°</p>  
-    </div> -->
-    <footer><p class="p">Coded by Faith Makinde</p></footer>
+    <div class="last">
+        <footer><p class="p">Coded by &lt;Faith Makinde&gt</p></footer>
+    </div>
 </fieldset>
 </form>
 <script src="index.js"></script>

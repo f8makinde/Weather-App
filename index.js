@@ -74,11 +74,42 @@ let x = document.getElementById("date");
   let month = allMonths[now.getMonth()];
   x.innerHTML = `${month} ${date}`;
 
+
+
+function showTemp(response){
+  console.log(response);
+  let descriptionEl= document.getElementById("des");
+  descriptionEl.innerHTML = response.data.weather[0].description;
+  document.querySelector("#myTemp").innerHTML = Math.round(response.data.main.temp);
+  let city = response.data.name;
+  let cityEl = document.getElementById("city");
+  cityEl.innerHTML = `${city}`;
+}
+
+function searchCity(city) {
+  let apiKey = "c66949765e3b0e53a28c1770749ecb89";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemp);
+}
+
 function search(event) {
   event.preventDefault();
-  let searchInput = document.querySelector("#input");
-  let h2 = document.querySelector("#search-text");
-  h2.innerHTML = `Searching for ${searchInput.value}`;
+  let showCity = document.querySelector("#input").value;
+  searchCity(showCity);
 }
 let formEl = document.querySelector("#search-form");
 formEl.addEventListener("submit", search);
+
+function showPosition(position){
+  console.log(position)
+  let lat = position.coords.latitude;
+  let lon =  position.coords.longitude;
+  let apiKey = "c66949765e3b0e53a28c1770749ecb89";
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+  axios.get(`${url}`).then(showTemp);
+}
+
+function currentLoc(){
+  navigator.geolocation.getCurrentPosition(showPosition)
+}
