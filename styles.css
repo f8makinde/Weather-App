@@ -75,3 +75,11 @@ fieldset{
     float: right;
     margin-bottom: -20px;
 }
+a{
+    color: olivedrab;
+    text-decoration: none;
+}
+#mycode{
+    color: black;
+    float: right;
+}
