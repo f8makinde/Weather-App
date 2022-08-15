@@ -1,7 +1,10 @@
 body{
     background: papayawhip;
     color: white;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 600px;
+    display: block;
+    margin:  50px auto;
 }
 ::placeholder{
     text-align: center;
@@ -15,6 +18,7 @@ fieldset{
     margin: 0 auto;
     text-shadow: 0px 0px 1px black;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 4px;
 }
 .container{
     text-align: center;
@@ -77,9 +81,25 @@ fieldset{
 }
 a{
     color: olivedrab;
+    text-shadow: 0px 0px 4px papayawhip;
     text-decoration: none;
 }
+a:hover{
+    text-decoration: underline;
+}
 #mycode{
-    color: black;
+    color: rgb(86, 13, 13);
+    text-shadow: 0px 0px 4px papayawhip;
     float: right;
 }
+strong{
+    font-size: 50px;
+}
+#convert{
+    font-size: 22px;
+    position: relative; 
+    top: -25px;
+ }
+ #des{
+    text-transform: capitalize;
+ }
