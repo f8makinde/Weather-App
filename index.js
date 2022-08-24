@@ -37,6 +37,7 @@ let currentDate = document.getElementById("date");
 
 
 
+
 function showTemp(response){
   let descriptionEl= document.getElementById("des");
   let iconEl = document.getElementById("icon");
@@ -47,11 +48,11 @@ function showTemp(response){
   iconEl.setAttribute("alt", response.data.weather[0].description);
   descriptionEl.innerHTML = response.data.weather[0].description;
   document.querySelector("#myTemp").innerHTML = Math.round(response.data.main.temp);
+  celsuisTemp = Math.round(response.data.main.temp);
   let city = response.data.name;
   let cityEl = document.getElementById("city");
   cityEl.innerHTML = `${city}`;
 }
-
 
 function searchCity(city) {
   let apiKey = "c66949765e3b0e53a28c1770749ecb89";
@@ -59,12 +60,42 @@ function searchCity(city) {
   axios.get(apiUrl).then(showTemp);
 }
 
-
 function search(event) {
   event.preventDefault();
   let showCity = document.querySelector("#input").value;
   searchCity(showCity);
 }
+
+
+
+function displayFahrenheitTemp(event){
+  event.preventDefault();
+  let temperatureEl = document.getElementById("myTemp");
+  celsuisLink.classList.remove("active")
+  fahrenheitLink.classList.add("active")
+  let fahrenheitTemp = (celsuisTemp * 9/5) + 32;
+  temperatureEl.innerHTML = Math.round(fahrenheitTemp);
+  
+  }
+  let celsuisTemp = null;
+
+
+
+  function displayCelsuisTemp(){
+    event.preventDefault();
+    celsuisLink.classList.add("active")
+    fahrenheitLink.classList.remove("active")
+    let temperatureEl = document.getElementById("myTemp");
+    temperatureEl.innerHTML = celsuisTemp;
+  }
+
+
+  let fahrenheitLink = document.getElementById("fahrenheit-link");
+  fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+ let celsuisLink = document.getElementById("celsius-link");
+ celsuisLink.addEventListener("click", displayCelsuisTemp);
+
 let formEl = document.querySelector("#search-form");
 formEl.addEventListener("submit", search);
 
@@ -85,3 +116,7 @@ function showPosition(position){
 function currentLoc(){
   navigator.geolocation.getCurrentPosition(showPosition)
 }
+
+
+
+
