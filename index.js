@@ -23,22 +23,28 @@ function formatDate(now) {
 
   return `${day} ${hours}:${minutes}`;
 }
+
 let dateEl = document.querySelector("#now");
 let now = new Date();
 dateEl.innerHTML = formatDate(now);
 
 // let all = new Date();
-let x = document.getElementById("date");
+let currentDate = document.getElementById("date");
  let date = now.getDate();
   let allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let month = allMonths[now.getMonth()];
-  x.innerHTML = `${month} ${date}`;
+  currentDate.innerHTML = `${month} ${date}`;
 
 
 
 function showTemp(response){
-  console.log(response);
   let descriptionEl= document.getElementById("des");
+  let iconEl = document.getElementById("icon");
+  iconEl.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconEl.setAttribute("alt", response.data.weather[0].description);
   descriptionEl.innerHTML = response.data.weather[0].description;
   document.querySelector("#myTemp").innerHTML = Math.round(response.data.main.temp);
   let city = response.data.name;
@@ -46,11 +52,13 @@ function showTemp(response){
   cityEl.innerHTML = `${city}`;
 }
 
+
 function searchCity(city) {
   let apiKey = "c66949765e3b0e53a28c1770749ecb89";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
 }
+
 
 function search(event) {
   event.preventDefault();
@@ -59,6 +67,8 @@ function search(event) {
 }
 let formEl = document.querySelector("#search-form");
 formEl.addEventListener("submit", search);
+
+
 
 function showPosition(position){
   console.log(position)
@@ -69,6 +79,8 @@ function showPosition(position){
 
   axios.get(`${url}`).then(showTemp);
 }
+
+
 
 function currentLoc(){
   navigator.geolocation.getCurrentPosition(showPosition)
