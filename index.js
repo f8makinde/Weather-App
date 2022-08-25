@@ -39,6 +39,7 @@ let currentDate = document.getElementById("date");
 
 
 function showTemp(response){
+  console.log(response)
   let descriptionEl= document.getElementById("des");
   let iconEl = document.getElementById("icon");
   iconEl.setAttribute(
@@ -49,6 +50,10 @@ function showTemp(response){
   descriptionEl.innerHTML = response.data.weather[0].description;
   document.querySelector("#myTemp").innerHTML = Math.round(response.data.main.temp);
   celsuisTemp = Math.round(response.data.main.temp);
+  let windEl = document.getElementById("wind-el");
+  windEl.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}km/h`;
+  let humidityEl = document.getElementById("humidity-el");
+  humidityEl.innerHTML = `Humidity: ${response.data.main.humidity}%`
   let city = response.data.name;
   let cityEl = document.getElementById("city");
   cityEl.innerHTML = `${city}`;
