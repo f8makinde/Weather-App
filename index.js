@@ -24,6 +24,13 @@ function formatDate(now) {
   return `${day} ${hours}:${minutes}`;
 }
 
+
+function formatDay(timestamp){
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+  return days[day];
+}
 let dateEl = document.querySelector("#now");
 let now = new Date();
 dateEl.innerHTML = formatDate(now);
@@ -36,6 +43,38 @@ let currentDate = document.getElementById("date");
   currentDate.innerHTML = `${month} ${date}`;
 
 
+function displayForecast(response){
+     let forecast = response.data.daily;
+
+  let forecastEl = document.querySelector("#forecast");
+
+
+  let forcastHtml = `<div class="row">`; 
+  forecast.forEach(function(forecastDay, index){
+    if(index <= 6){
+    forcastHtml +=
+    `
+    <div class="col-2">
+    <div class="section">${formatDay(forecastDay.dt)}</div>
+      <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="img">
+     <div class="sectionTwo">
+       <span>${Math.round(forecastDay.temp.max)}°</span><span class="second-temp">${Math.round(forecastDay.temp.min)}°</span></p>
+      </div>
+      </div>
+      `
+    }
+   });
+   forcastHtml += `</div>`;
+   forecastEl.innerHTML =  forcastHtml;
+  }
+
+  function getForecast(coordinates){
+    console.log(coordinates)
+    let apiKey = "c66949765e3b0e53a28c1770749ecb89";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayForecast)
+    // console.log(apiUrl)
+  }
 
 
 function showTemp(response){
@@ -57,7 +96,10 @@ function showTemp(response){
   let city = response.data.name;
   let cityEl = document.getElementById("city");
   cityEl.innerHTML = `${city}`;
+
+  getForecast(response.data.coord)
 }
+
 
 function searchCity(city) {
   let apiKey = "c66949765e3b0e53a28c1770749ecb89";
@@ -69,6 +111,7 @@ function search(event) {
   event.preventDefault();
   let showCity = document.querySelector("#input").value;
   searchCity(showCity);
+ 
 }
 
 
