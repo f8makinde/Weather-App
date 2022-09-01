@@ -83,7 +83,7 @@ input[type="text"]
     border-radius: 2px;
     font-size: 16px;
     color: white;
-    text-shadow: 0px 0px 2px papayawhip;
+    text-shadow: 0px 0px 2px black;
 }
 #cur{
     background: transparent;
@@ -92,7 +92,7 @@ input[type="text"]
     border-radius: 2px;
     font-size: 16px;
     color: white;
-    text-shadow: 0px 0px 2px papayawhip; 
+    text-shadow: 0px 0px 2px black; 
 }
 #cur:hover{
     border: 1px solid white;
